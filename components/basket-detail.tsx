@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import type { Basket } from "@/types/basket"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Check, ShoppingCart } from "lucide-react"
@@ -15,6 +15,15 @@ interface BasketDetailProps {
 export function BasketDetail({ basket, onBack }: BasketDetailProps) {
   const [showOrderForm, setShowOrderForm] = useState(false)
   const [ordered, setOrdered] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null // or a loading skeleton
+  }
 
   const handleOrder = () => {
     setOrdered(true)
