@@ -25,7 +25,7 @@ export function AdminHeader() {
         <div className="flex items-center gap-2">
           <div className="relative h-8 w-8 overflow-hidden rounded-full">
             <Image
-              src="/favicon32x32.png"
+              src="/favicon-32x32.png"
               alt="Logo Delicias da Rafa"
               width={32}
               height={32}
