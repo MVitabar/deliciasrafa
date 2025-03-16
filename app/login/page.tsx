@@ -21,7 +21,7 @@ export default function LoginPage() {
       // Your login logic here
       router.push('/admin/dashboard')
     } catch (err) {
-      setError('Error al iniciar sesión')
+      setError('Erro ao fazer login')
     }
   }
 
@@ -33,12 +33,12 @@ export default function LoginPage() {
           className="inline-flex items-center text-sm text-rose-700 hover:text-rose-900 mb-4"
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Volver al inicio
+          Voltar ao início
         </Link>
 
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h1 className="text-2xl font-bold text-gray-900 mb-6">
-            Iniciar Sesión
+            Fazer Login
           </h1>
 
           {error && (
@@ -50,7 +50,7 @@ export default function LoginPage() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email
+                E-mail
               </label>
               <Input
                 id="email"
@@ -59,12 +59,13 @@ export default function LoginPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="mt-1"
+                placeholder="Digite seu e-mail"
               />
             </div>
 
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Contraseña
+                Senha
               </label>
               <Input
                 id="password"
@@ -73,11 +74,12 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="mt-1"
+                placeholder="Digite sua senha"
               />
             </div>
 
             <Button type="submit" className="w-full">
-              Iniciar Sesión
+              Entrar
             </Button>
           </form>
         </div>

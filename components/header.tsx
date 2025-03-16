@@ -10,19 +10,20 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="border-b">
+      <div className="container flex items-center justify-between py-4">
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-10 w-10 overflow-hidden rounded-full">
             <Image
               src="/delicias-logo.jpg"
               alt="Logo Delicias da Rafa"
               fill
+              sizes="40px"
               className="object-cover"
               priority
             />
           </div>
-          <span className="font-bold text-xl text-rose-800">Delicias da Rafa</span>
+          <span className="text-xl font-bold">Delicias da Rafa</span>
         </Link>
 
         {/* Menú de navegación móvil */}
