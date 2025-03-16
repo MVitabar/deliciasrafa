@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Instagram, Mail, Phone } from "lucide-react"
+import { PWAInstallButton } from "./pwa-install-button"
 
 export function Footer() {
   return (
@@ -53,8 +54,13 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Delicias da Rafa. Todos os direitos reservados.
+        <div className="mt-8 pt-8 border-t">
+          <div className="flex flex-col items-center gap-4">
+            <PWAInstallButton />
+            <p className="text-sm text-muted-foreground text-center">
+              © {new Date().getFullYear()} Delicias da Rafa. Todos os direitos reservados.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
