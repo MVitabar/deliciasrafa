@@ -1,5 +1,6 @@
 import { OrdersTable } from "@/components/admin/orders-table"
 import { OrderFilters } from "@/components/admin/order-filters"
+import { ordersData } from "@/data/orders"
 
 export default function PedidosPage() {
   return (
@@ -11,7 +12,7 @@ export default function PedidosPage() {
       <OrderFilters />
       
       <OrdersTable 
-        orders={[]} // Replace with your actual orders data
+        orders={ordersData}
       />
     </div>
   )

@@ -1,72 +1,86 @@
 "use client"
 
-import Link from "next/link"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { getRecentOrders } from "@/lib/data"
+import { OrderDetails } from "@/components/admin/order-details"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { formatPrice } from "@/lib/utils"
+import type { Order } from "@/types/order"
 
-export function RecentOrders() {
-  const recentOrders = getRecentOrders()
+interface RecentOrdersProps {
+  orders?: Order[]
+}
+
+export function RecentOrders({ orders = [] }: RecentOrdersProps) {
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+
+  const handleViewOrder = (order: Order) => {
+    setSelectedOrder(order)
+    setIsDetailsOpen(true)
+  }
 
   return (
-    <div className="rounded-md border">
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Pedido</TableHead>
-            <TableHead className="w-[180px]">Data</TableHead>
-            <TableHead>Cliente</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="w-[120px]">Total</TableHead>
-            <TableHead className="text-right">Ações</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {recentOrders.map((order) => (
-            <TableRow key={order.id}>
-              <TableCell className="font-medium">
-                <Link href={`/admin/pedidos/${order.id}`} className="hover:underline">
-                  #{order.number}
-                </Link>
-              </TableCell>
-              <TableCell>{new Date(order.date).toLocaleDateString("pt-BR")}</TableCell>
-              <TableCell>
-                <div className="flex flex-col">
-                  <span>{order.customer.name}</span>
-                  <span className="text-xs text-muted-foreground">{order.customer.email}</span>
-                </div>
-              </TableCell>
-              <TableCell>
-                <Badge
-                  className={
-                    order.status === "Concluído"
-                      ? "bg-green-500"
-                      : order.status === "Pendente"
-                        ? "bg-yellow-500"
-                        : order.status === "Em processamento"
-                          ? "bg-blue-500"
-                          : order.status === "Cancelado"
-                            ? "bg-red-500"
-                            : ""
-                  }
-                >
-                  {order.status}
-                </Badge>
-              </TableCell>
-              <TableCell>R$ {order.total.toFixed(2)}</TableCell>
-              <TableCell className="text-right">
-                <Link href={`/admin/pedidos/${order.id}`}>
-                  <Button variant="outline" size="sm">
-                    Ver
-                  </Button>
-                </Link>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
+    <>
+      <Card>
+        <CardHeader>
+          <CardTitle>Pedidos Recentes</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {orders.length === 0 ? (
+            <p className="text-center text-muted-foreground py-6">
+              Nenhum pedido encontrado
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[80px]">Pedido</TableHead>
+                    <TableHead>Cliente</TableHead>
+                    <TableHead className="hidden sm:table-cell">Status</TableHead>
+                    <TableHead className="text-right">Valor</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {orders.map((order) => (
+                    <TableRow key={order.id}>
+                      <TableCell>#{order.id}</TableCell>
+                      <TableCell className="truncate max-w-[120px] sm:max-w-none">
+                        {order.customer.name}
+                      </TableCell>
+                      <TableCell className="hidden sm:table-cell">
+                        {order.status}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        {formatPrice(order.total)}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      <OrderDetails
+        order={selectedOrder}
+        isOpen={isDetailsOpen}
+        onClose={() => {
+          setIsDetailsOpen(false)
+          setSelectedOrder(null)
+        }}
+      />
+    </>
   )
 }
 

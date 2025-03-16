@@ -1,4 +1,4 @@
-export type OrderStatus = 'pending' | 'processing' | 'completed' | 'cancelled'
+export type OrderStatus = "pending" | "processing" | "completed" | "cancelled"
 
 export interface Customer {
   id: string
@@ -12,6 +12,7 @@ export interface Order {
   id: string
   customer: Customer
   basketId: string
+  basketName: string
   status: OrderStatus
   date: string
   total: number
