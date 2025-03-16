@@ -13,12 +13,12 @@ export function Header() {
     <header className="border-b">
       <div className="container flex items-center justify-between py-4 relative px-4">
         <Link href="/" className="flex items-center gap-2">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full">
+          <div className="relative h-8 w-8 overflow-hidden rounded-full">
             <Image
-              src="/delicias-logo.jpg"
+              src="/favicon32x32.png"
               alt="Logo Delicias da Rafa"
-              fill
-              sizes="40px"
+              width={32}
+              height={32}
               className="object-cover"
               priority
             />

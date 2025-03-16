@@ -25,10 +25,10 @@ export function AdminHeader() {
         <div className="flex items-center gap-2">
           <div className="relative h-8 w-8 overflow-hidden rounded-full">
             <Image
-              src="/delicias-logo.jpg"
+              src="/favicon32x32.png"
               alt="Logo Delicias da Rafa"
-              fill
-              sizes="32px"
+              width={32}
+              height={32}
               className="object-cover"
               priority
             />
