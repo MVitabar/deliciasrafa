@@ -11,7 +11,7 @@ export function Header() {
 
   return (
     <header className="border-b">
-      <div className="container flex items-center justify-between py-4">
+      <div className="container flex items-center justify-between py-4 relative px-4">
         <Link href="/" className="flex items-center gap-2">
           <div className="relative h-10 w-10 overflow-hidden rounded-full">
             <Image
@@ -25,12 +25,6 @@ export function Header() {
           </div>
           <span className="text-xl font-bold">Delicias da Rafa</span>
         </Link>
-
-        {/* Menú de navegación móvil */}
-        <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsMenuOpen(true)}>
-          <Menu className="h-6 w-6 text-rose-700" />
-          <span className="sr-only">Abrir menú</span>
-        </Button>
 
         {/* Enlaces para escritorio */}
         <div className="hidden md:flex items-center gap-4">
@@ -46,6 +40,17 @@ export function Header() {
             @deliciasdarafapastore
           </Link>
         </div>
+
+        {/* Botón del menú móvil */}
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="md:hidden fixed right-4 top-4 z-50" 
+          onClick={() => setIsMenuOpen(true)}
+        >
+          <Menu className="h-6 w-6 text-rose-700" />
+          <span className="sr-only">Abrir menu</span>
+        </Button>
 
         {/* Menú móvil expandible */}
         {isMenuOpen && (
@@ -75,7 +80,7 @@ export function Header() {
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
               >
-                @deliciasdarafapastore
+                @deliciasdarafastore
               </Link>
               <Link
                 href="/login"
