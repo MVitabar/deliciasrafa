@@ -2,14 +2,14 @@ import type { Basket } from "@/types/basket"
 
 // Local basket images
 const basketImages = [
-  "/cesta1.jpg",  // Breakfast Day P
-  "/cesta2.jpg",  // Breakfast Day G
-  "/cesta3.jpg",  // Infantil
+  "/cesta1.jpeg",  // Breakfast Day P
+  "/cesta2.jpeg",  // Breakfast Day G
+  "/cesta3.jpeg",  // Infantil
   "/cesta4.jpeg", // Zero Lactose
-  "/cesta5.jpg",  // Diet
-  "/cesta6.jpg",  // Fit
-  "/cesta7.jpg",  // Lanche 1
-  "/cesta8.jpg",  // Lanche 2
+  "/cesta5.jpeg",  // Diet
+  "/cesta6.jpeg",  // Fit
+  "/cesta7.jpeg",  // Lanche 1
+  "/cesta8.jpeg",  // Lanche 2
   "/cesta9.jpg"   // Queijos e Vinho
 ]
 
@@ -273,4 +273,3 @@ export const basketsData: Basket[] = [
     ]
   }
 ]
-

@@ -23,17 +23,19 @@ export function AdminHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
-          <div className="relative h-8 w-8 overflow-hidden rounded-full">
-            <Image
-              src="/favicon-32x32.png"
-              alt="Logo Delicias da Rafa"
-              width={32}
-              height={32}
-              className="object-cover"
-              priority
-            />
-          </div>
-          <span className="font-semibold">Delicias da Rafa</span>
+          <Link href="/" className="flex items-center gap-2">
+            <div className="relative h-8 w-8 overflow-hidden rounded-full">
+              <Image
+                src="/favicon-32x32.png"
+                alt="Logo Delicias da Rafa"
+                width={32}
+                height={32}
+                className="object-cover"
+                priority
+              />
+            </div>
+            <span className="font-semibold">Delicias da Rafa</span>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -93,4 +95,3 @@ export function AdminHeader() {
     </header>
   )
 }
-
