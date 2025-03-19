@@ -1,5 +1,6 @@
 "use client"
 
+import { useState, useMemo } from "react"
 import { Order } from "../../types/order"
 import {
   Table,
@@ -16,6 +17,42 @@ interface OrdersTableProps {
 }
 
 export function OrdersTable({ orders }: OrdersTableProps) {
+  const [filters, setFilters] = useState({
+    searchTerm: "",
+    status: "all",
+    paymentMethod: "all",
+    startDate: "",
+    endDate: ""
+  })
+
+  const filteredOrders = useMemo(() => {
+    return orders.filter(order => {
+      // Search term filter
+      const matchesSearch = 
+        filters.searchTerm === "" || 
+        order.id.toString().includes(filters.searchTerm) ||
+        order.customer.name.toLowerCase().includes(filters.searchTerm.toLowerCase())
+
+      // Status filter
+      const matchesStatus = 
+        filters.status === "all" || 
+        order.status === filters.status
+
+      // Payment method filter
+      const matchesPaymentMethod = 
+        filters.paymentMethod === "all" || 
+        order.paymentMethod === filters.paymentMethod
+
+      // Date range filter
+      const orderDate = new Date(order.date)
+      const matchesDateRange = 
+        (!filters.startDate || orderDate >= new Date(filters.startDate)) &&
+        (!filters.endDate || orderDate <= new Date(filters.endDate))
+
+      return matchesSearch && matchesStatus && matchesPaymentMethod && matchesDateRange
+    })
+  }, [orders, filters])
+
   return (
     <div className="space-y-4">
       <Card>
@@ -34,7 +71,7 @@ export function OrdersTable({ orders }: OrdersTableProps) {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orders.map((order) => (
+              {filteredOrders.map((order) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.id}</TableCell>
                   <TableCell>{order.customer.name}</TableCell>
@@ -57,4 +94,3 @@ export function OrdersTable({ orders }: OrdersTableProps) {
     </div>
   )
 }
-

@@ -16,6 +16,7 @@ export const ordersData: Order[] = [
     status: "completed",
     date: "2024-03-15T09:30:00",
     total: basketsData[0].price,
+    paymentMethod: "pix",
     notes: "Entregar pela manhã"
   },
   {
@@ -32,6 +33,7 @@ export const ordersData: Order[] = [
     status: "pending",
     date: "2024-03-16T10:00:00",
     total: basketsData[2].price,
+    paymentMethod: "credit",
     notes: "Presente para aniversário"
   },
   {
@@ -47,7 +49,8 @@ export const ordersData: Order[] = [
     basketName: basketsData[1].name,
     status: "processing",
     date: "2024-03-16T11:15:00",
-    total: basketsData[1].price
+    total: basketsData[1].price,
+    paymentMethod: "boleto"
   },
   {
     id: "4",
@@ -63,6 +66,7 @@ export const ordersData: Order[] = [
     status: "pending",
     date: "2024-03-16T14:00:00",
     total: basketsData[3].price,
+    paymentMethod: "debit",
     notes: "Sem lactose conforme solicitado"
   },
   {
@@ -78,6 +82,7 @@ export const ordersData: Order[] = [
     basketName: basketsData[5].name,
     status: "cancelled",
     date: "2024-03-14T16:30:00",
-    total: basketsData[5].price
+    total: basketsData[5].price,
+    paymentMethod: "credit"
   }
 ]

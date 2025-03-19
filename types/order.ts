@@ -1,4 +1,5 @@
 export type OrderStatus = "pending" | "processing" | "completed" | "cancelled"
+export type PaymentMethod = "credit" | "debit" | "pix" | "boleto" | "transfer"
 
 export interface Customer {
   id: string
@@ -16,5 +17,6 @@ export interface Order {
   status: OrderStatus
   date: string
   total: number
+  paymentMethod: PaymentMethod
   notes?: string
 }
